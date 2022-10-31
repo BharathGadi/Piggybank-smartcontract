@@ -1,0 +1,20 @@
+//SPDX-License-Identifier:MIT
+pragma solidity ^0.8.7;
+contract piggyBank
+{
+    address payable owner;
+    constructor()
+    {
+        owner=payable(msg.sender);
+    }
+    receive() external payable
+    {
+
+    }
+    function kill() external
+    {
+        require(msg.sender==owner,"You are not owner");
+        selfdestruct(payable(msg.sender));
+    }
+
+}
